@@ -11,8 +11,9 @@
         <header>
             <h2>To do List</h2>
             <form>
-                <p>{{ currentTodo }}</p>
-                <input type="text" v-model="currentTodo" placeholder="Description" maxlength="500">
+                <p>{{ currentTask }}</p>
+                <input type="text" v-model="currentTask" placeholder="Description" maxlength="500">
+                <button @click.prevent="addTask">+</button>
             </form>
         </header>
         <section>
@@ -24,6 +25,7 @@
                           {{ todo.task }}
                         </label>
                     </div>
+                    
                 </li>
             </ol>
         </section>
