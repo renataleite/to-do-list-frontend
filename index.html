@@ -10,6 +10,10 @@
     <main id="app">
         <header>
             <h2>To do List</h2>
+            <form>
+                <p>{{ currentTodo }}</p>
+                <input type="text" v-model="currentTodo" placeholder="Description" maxlength="500">
+            </form>
         </header>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
