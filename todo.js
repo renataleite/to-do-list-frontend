@@ -21,9 +21,6 @@ var app = new Vue({
             const resource = this.baseUrl + "/api/v1/todolist";
             const settings = {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: {
                     "task": this.currentTask,
                     "done": false
