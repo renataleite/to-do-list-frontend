@@ -13,7 +13,7 @@ var app = new Vue({
             const resource = this.baseUrl + "/api/v1/todolist"
             const response = await fetch(resource);
             var json = await response.json();
-            console.log(json);
+            
             this.todos = json.toDoList.data;
             this.sortTasks();
         },        
@@ -21,6 +21,9 @@ var app = new Vue({
             const resource = this.baseUrl + "/api/v1/todolist";
             const settings = {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: {
                     "task": this.currentTask,
                     "done": false
