@@ -22,5 +22,12 @@ new Vue({
         delTask(todo) {
             this.todos = this.todos.filter(el => el.task !== todo.task);
         }
+    },
+    computed: {
+        filteredTasks() {
+            return this.todos.filter(
+                todo => todo.task.toLowerCase().match(this.currentTask.toLowerCase())
+            );
+        }
     }
 });

@@ -11,14 +11,13 @@
         <header>
             <h2>To do List</h2>
             <form>
-                <p>{{ currentTask }}</p>
                 <input type="text" v-model="currentTask" placeholder="Description" maxlength="500">
                 <button @click.prevent="addTask">+</button>
             </form>
         </header>
         <section>
             <ol>
-                <li v-for="todo in todos" :key="todo.task" @click="toggleTask(todo)">
+                <li v-for="todo in filteredTasks" :key="todo.task" @click="toggleTask(todo)">
                     <div>
                         <input type="checkbox">
                         <label>
