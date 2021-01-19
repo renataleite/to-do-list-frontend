@@ -16,8 +16,9 @@ var app = new Vue({
         async getTasks() {
             var resource = this.baseUrl + "/api/v1/todolist"
             const response = await fetch(resource);
-            console.log(response);
-            this.todos = response.toDoList.data;
+            var json = await response.json();
+            console.log(json);
+            this.todos = json.toDoList.data;
         },
         addTask() {
 
