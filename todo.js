@@ -22,7 +22,6 @@ var app = new Vue({
             const settings = {
                 method: 'POST',
                 headers: {
-                    Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: {
