@@ -3,31 +3,38 @@ var app = new Vue({
     data: {
         baseUrl: "https://morning-beach-24953.herokuapp.com",
         currentTask: "",
-        todos: [
-            { task: "Estudar", done: false },
-            { task: "Trabalhar", done: false },
-            { task: "Limpar a casa", done: true }
-        ]
+        todos: []
     },
     created: function () {
         this.getTasks();
     },
     methods: {
         async getTasks() {
-            var resource = this.baseUrl + "/api/v1/todolist"
+            const resource = this.baseUrl + "/api/v1/todolist"
             const response = await fetch(resource);
             var json = await response.json();
             console.log(json);
             this.todos = json.toDoList.data;
-        },
-        addTask() {
-
-            this.todos.push({
-                task: this.currentTask,
-                done: false
-            });
-            this.currentTask = "";
             this.sortTasks();
+        },        
+        async addTask() {
+            const resource = this.baseUrl + "/api/v1/todolist";
+            const settings = {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: {
+                    "task": this.currentTask,
+                    "done": false
+                }       
+            };
+            await fetch(resource, settings);
+        
+            this.currentTask = "";
+            this.getTasks();
+            
         },
         /* muda o estado “done” da tarefa passada como parâmetro*/
         toggleTask(todo) {
