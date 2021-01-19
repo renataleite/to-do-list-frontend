@@ -15,6 +15,12 @@ new Vue({
                 done: false
             });
             this.currentTask = "";
+        },
+        toggleTask(todo) {
+            todo.done = !todo.done;
+        },
+        delTask(todo) {
+            this.todos = this.todos.filter(el => el.task !== todo.task);
         }
     }
 });

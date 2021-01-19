@@ -18,14 +18,19 @@
         </header>
         <section>
             <ol>
-                <li v-for="todo in todos" :key="todo.task">
+                <li v-for="todo in todos" :key="todo.task" @click="toggleTask(todo)">
                     <div>
                         <input type="checkbox">
                         <label>
-                          {{ todo.task }}
+                            <del v-if="todo.done">
+                                {{ todo.task }}
+                            </del>
+                            <span v-else>
+                                {{ todo.task }}
+                            </span>
                         </label>
                     </div>
-                    
+                    <img src="close-icon.png" @click="delTask(todo)" alt="delete task">
                 </li>
             </ol>
         </section>
