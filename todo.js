@@ -41,7 +41,12 @@ var app = new Vue({
             this.sortTasks();
         },
         delTask(todo) {
-            this.todos = this.todos.filter(el => el.task !== todo.task);
+            const resource = this.baseUrl + "/api/v1/todolist"+todo.id;
+            const settings = {
+                method: 'DELETE',
+            };
+            await fetch(resource, settings);
+            this.getTasks()
         },
         //responsável por ordenar a lista de tarefas
         sortTasks() {
