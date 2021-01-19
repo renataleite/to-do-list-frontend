@@ -15,12 +15,17 @@ new Vue({
                 done: false
             });
             this.currentTask = "";
+            this.sortTasks();
         },
         toggleTask(todo) {
             todo.done = !todo.done;
+            this.sortTasks();
         },
         delTask(todo) {
             this.todos = this.todos.filter(el => el.task !== todo.task);
+        },
+        sortTasks() {
+            this.todos.sort((a,b) => a.done - b.done);
         }
     },
     computed: {
