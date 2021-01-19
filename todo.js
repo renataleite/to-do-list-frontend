@@ -13,10 +13,10 @@ var app = new Vue({
             const resource = this.baseUrl + "/api/v1/todolist"
             const response = await fetch(resource);
             var json = await response.json();
-            
+
             this.todos = json.toDoList.data;
             this.sortTasks();
-        },        
+        },
         async addTask() {
             const resource = this.baseUrl + "/api/v1/todolist";
             const settings = {
@@ -30,18 +30,18 @@ var app = new Vue({
                 })
             };
             await fetch(resource, settings);
-        
+
             this.currentTask = "";
             this.getTasks();
-            
+
         },
         /* muda o estado “done” da tarefa passada como parâmetro*/
         toggleTask(todo) {
             todo.done = !todo.done;
             this.sortTasks();
         },
-        delTask(todo) {
-            const resource = this.baseUrl + "/api/v1/todolist"+todo.id;
+        async delTask(todo) {
+            const resource = this.baseUrl + "/api/v1/todolist/" + todo.id;
             const settings = {
                 method: 'DELETE',
             };
