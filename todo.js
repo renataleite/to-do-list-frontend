@@ -24,10 +24,10 @@ var app = new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: {
+                body: JSON.stringify({
                     "task": this.currentTask,
                     "done": false
-                }       
+                })
             };
             await fetch(resource, settings);
         
