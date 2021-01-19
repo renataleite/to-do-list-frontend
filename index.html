@@ -11,6 +11,7 @@
         <header>
             <h2>To do List</h2>
             <form>
+                <!-- v-model habilita a interligação de mão-dupla -->
                 <input type="text" v-model="currentTask" placeholder="Description" maxlength="500">
                 <button @click.prevent="addTask">+</button>
             </form>
@@ -19,8 +20,10 @@
             <ol>
                 <li v-for="todo in filteredTasks" :key="todo.task" @click="toggleTask(todo)">
                     <div>
-                        <input type="checkbox">
+                        <!--:checked="todo.done" muda a marcação da checkbox de acordo com o estado “done” do to-do -->
+                        <input type="checkbox" :checked="todo.done">
                         <label>
+                            <!-- se o todo estiver com “done” igual a “true” -->
                             <del v-if="todo.done">
                                 {{ todo.task }}
                             </del>
