@@ -26,6 +26,12 @@ new Vue({
         },
         sortTasks() {
             this.todos.sort((a,b) => a.done - b.done);
+        },
+        isValidInput() {
+            return !(!this.currentTask.trim() || this.checkIfTodoExists());
+        },
+        checkIfTaskExists() {
+            return this.todos.some((todo) => todo.task === this.currentTask.trim());
         }
     },
     computed: {
