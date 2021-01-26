@@ -1,5 +1,6 @@
 var app = new Vue({
     el: "#app",
+    //data disponibiliza dados para o Vue gerenciar e reagir a mudanças
     data: {
         baseUrl: "https://morning-beach-24953.herokuapp.com",
         currentTask: "",
@@ -18,6 +19,7 @@ var app = new Vue({
             this.sortTasks();
         },
         async addTask() {
+            if(!this.isValidInput()) return alert("Invalid input.");
             const resource = this.baseUrl + "/api/v1/todolist";
             const settings = {
                 method: 'POST',
@@ -52,9 +54,11 @@ var app = new Vue({
         sortTasks() {
             this.todos.sort((a, b) => a.done - b.done);
         },
+        // é valido se existir algum valor no currentTask através do !this.currentTask.trim()
         isValidInput() {
             return !(!this.currentTask.trim() || this.checkIfTodoExists());
         },
+        //informa se existe, na lista de tarefas, algum task com o texto igual ao contido no currentTask
         checkIfTaskExists() {
             return this.todos.some((todo) => todo.task === this.currentTask.trim());
         }
@@ -63,6 +67,7 @@ var app = new Vue({
     computed: {
         filteredTasks() {
             return this.todos.filter(
+                //transforma ambos os textos para letras minúsculas
                 todo => todo.task.toLowerCase().match(this.currentTask.toLowerCase())
             );
         }

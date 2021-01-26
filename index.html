@@ -18,6 +18,7 @@
         </header>
         <section>
             <ol>
+                <!-- :key fornece ao Vue um modo de diferenciar cada elemento e evitar alguns problemas de gerenciamento de estado -->
                 <li v-for="todo in filteredTasks" :key="todo.task" @click="toggleTask(todo)">
                     <div>
                         <!--:checked="todo.done" muda a marcação da checkbox de acordo com o estado “done” do to-do -->
@@ -25,6 +26,9 @@
                         <label>
                             <!-- se o todo estiver com “done” igual a “true” -->
                             <del v-if="todo.done">
+                                <!-- chaves duplas permite a interpolação de String. 
+                                    Vincula o dado todo.task a tag html, 
+                                    e quando o dado mudar a tag html também mudará. -->
                                 {{ todo.task }}
                             </del>
                             <span v-else>
