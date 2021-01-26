@@ -56,7 +56,7 @@ var app = new Vue({
         },
         // é valido se existir algum valor no currentTask através do !this.currentTask.trim()
         isValidInput() {
-            return !(!this.currentTask.trim() || this.checkIfTodoExists());
+            return !(!this.currentTask.trim() || this.checkIfTaskExists());
         },
         //informa se existe, na lista de tarefas, algum task com o texto igual ao contido no currentTask
         checkIfTaskExists() {
