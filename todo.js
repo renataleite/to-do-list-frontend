@@ -16,7 +16,7 @@ var app = new Vue({
             const response = await fetch(resource);
             var json = await response.json();
 
-            this.todos = json.data.data;
+            this.todos = json.data;
             this.sortTasks();
         },
         async addTask() {
