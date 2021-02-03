@@ -39,7 +39,7 @@ var app = new Vue({
 
         },
         /* muda o estado “done” da tarefa passada como parâmetro*/
-        toggleTask(todo) {
+        async toggleTask(todo) {
             todo.done = !todo.done;
             const resource = this.baseUrl + "/api/v1/todolist/" + todo._id;
             const settings = {
