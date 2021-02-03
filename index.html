@@ -9,6 +9,12 @@
 <body>
     <main id="app">
         <header>
+            <template>
+                <div class="tasks-progress">
+                    <span class="progress-value">{{ progress }}%</span>
+                    <div class="progress-bar" :style="{width: progress + '%'}"></div>
+                </div>
+            </template>
             <h2>To do List</h2>
             <form>
                 <!-- v-model habilita a interligação de mão-dupla -->

@@ -1,8 +1,9 @@
+var local = false
 var app = new Vue({
     el: "#app",
     //data disponibiliza dados para o Vue gerenciar e reagir a mudanças
     data: {
-        baseUrl: "https://morning-beach-24953.herokuapp.com",
+        baseUrl: local ? "http://localhost:8080": "https://morning-beach-24953.herokuapp.com",
         currentTask: "",
         todos: []
     },
@@ -15,7 +16,7 @@ var app = new Vue({
             const response = await fetch(resource);
             var json = await response.json();
 
-            this.todos = json.toDoList.data;
+            this.todos = json.data.data;
             this.sortTasks();
         },
         async addTask() {
@@ -70,6 +71,11 @@ var app = new Vue({
                 //transforma ambos os textos para letras minúsculas
                 todo => todo.task.toLowerCase().match(this.currentTask.toLowerCase())
             );
-        }
+        },
+        progress() {
+			const total = this.todos.length
+			const done = this.todos.filter(t => t.done).length
+			return Math.round(done / total * 100) || 0
+		}
     }
 });
