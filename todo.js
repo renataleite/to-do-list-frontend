@@ -48,13 +48,12 @@ var app = new Vue({
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    "task": this.currentTask,
+                    "task": todo.task,
                     "done": todo.done
                 })
             };
             await fetch(resource, settings);
-
-            this.sortTasks();
+            this.getTasks()
         },
         async delTask(todo) {
             const resource = this.baseUrl + "/api/v1/todolist/" + todo._id;
