@@ -44,7 +44,7 @@ var app = new Vue({
             this.sortTasks();
         },
         async delTask(todo) {
-            const resource = this.baseUrl + "/api/v1/todolist/" + todo.id;
+            const resource = this.baseUrl + "/api/v1/todolist/" + todo._id;
             const settings = {
                 method: 'DELETE',
             };
