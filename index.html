@@ -25,10 +25,10 @@
         <section>
             <ol>
                 <!-- :key fornece ao Vue um modo de diferenciar cada elemento e evitar alguns problemas de gerenciamento de estado -->
-                <li v-for="todo in filteredTasks" :key="todo.task" @click="toggleTask(todo)">
+                <li v-for="todo in filteredTasks" :key="todo.task" >
                     <div>
                         <!--:checked="todo.done" muda a marcação da checkbox de acordo com o estado “done” do to-do -->
-                        <input type="checkbox" :checked="todo.done">
+                        <input type="checkbox" :checked="todo.done" @click="toggleTask(todo)">
                         <label>
                             <!-- se o todo estiver com “done” igual a “true” -->
                             <del v-if="todo.done">

@@ -1,4 +1,4 @@
-var local = false
+var local = true
 var app = new Vue({
     el: "#app",
     //data disponibiliza dados para o Vue gerenciar e reagir a mudanças
@@ -67,7 +67,7 @@ var app = new Vue({
         sortTasks() {
             this.todos.sort((a, b) => a.done - b.done);
         },
-        // é valido se existir algum valor no currentTask através do !this.currentTask.trim()
+        // é valido se existir algum valor no currentTask  ou se não houver tarefas iguais ao currentTask
         isValidInput() {
             return !(!this.currentTask.trim() || this.checkIfTaskExists());
         },
@@ -78,12 +78,14 @@ var app = new Vue({
     },
     /*cachear e executar métodos somente quando algum dado reativo for alterado e/ou em métodos complexos com elevado tempo de execução, em prol da otimização. */
     computed: {
+        //método que faz a busca da tarefa
         filteredTasks() {
             return this.todos.filter(
                 //transforma ambos os textos para letras minúsculas
                 todo => todo.task.toLowerCase().match(this.currentTask.toLowerCase())
             );
         },
+        //mostra a porcentagem de tarefas concluídas
         progress() {
 			const total = this.todos.length
 			const done = this.todos.filter(t => t.done).length
