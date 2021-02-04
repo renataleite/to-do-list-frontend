@@ -1,4 +1,4 @@
-var local = true
+var local = false
 var app = new Vue({
     el: "#app",
     //data disponibiliza dados para o Vue gerenciar e reagir a mudanças
@@ -32,10 +32,11 @@ var app = new Vue({
                     "done": false
                 })
             };
-            await fetch(resource, settings);
+            await fetch(resource, settings).then(function(){
+                app.getTasks()
+            })
 
             this.currentTask = "";
-            this.getTasks();
 
         },
         /* muda o estado “done” da tarefa passada como parâmetro*/
@@ -52,16 +53,18 @@ var app = new Vue({
                     "done": todo.done
                 })
             };
-            await fetch(resource, settings);
-            this.getTasks()
+            await fetch(resource, settings).then(function(){
+                app.getTasks()
+            })
         },
         async delTask(todo) {
             const resource = this.baseUrl + "/api/v1/todolist/" + todo._id;
             const settings = {
                 method: 'DELETE',
             };
-            await fetch(resource, settings);
-            this.getTasks()
+            await fetch(resource, settings).then(function(){
+                app.getTasks()
+            })
         },
         //responsável por ordenar a lista de tarefas
         sortTasks() {
